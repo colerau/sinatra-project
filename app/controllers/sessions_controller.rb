@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     end
 
     post '/login' do 
-        @user = User.find_by(email: params[:email], password: params[:password], id: params[:user_id])
+        @user = User.find_by(email: params[:email], password: params[:password])
         if @user
             session[:user_id] = @user.id
             session[:email] = @user.email
@@ -17,12 +17,12 @@ class SessionsController < ApplicationController
     end
 
     get '/logout' do 
-        @user = User.find_by(email: params[:email], password: params[:password])
+        @user = User.find_by(email: session[:email], password: session[:password], id: session[:user_id])
         if @user
             session.clear
             redirect "/login"
         else
-            redirect "/login"
+            erb :"/sessions/not_logged_in"
         end 
     end
 end
