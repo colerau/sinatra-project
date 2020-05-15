@@ -5,7 +5,13 @@ require_relative "./application_controller"
 
 class UsersController < ApplicationController
     get '/users' do
-        erb :'/users/index'
+        @user = User.find_by(email: session[:email], password: session[:password], id: session[:user_id])
+        if @user 
+            "You are logged in as #{session[:email]}."
+            erb :'/users/index'
+        else 
+            redirect "/login"
+        end
     end
 
     get '/users/new' do 
@@ -26,6 +32,6 @@ class UsersController < ApplicationController
     end
 
     get '/sign_up' do 
-        
+
     end
 end
