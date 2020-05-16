@@ -1,7 +1,11 @@
 class BooksController < ApplicationController
     get '/books' do 
-        @books = Book.all
-        erb :'/books/index'
+        if !logged_in?
+            redirect "/login"
+        else  
+            @books = Book.all
+            erb :'/books/index'
+        end 
     end
 
     get '/books/new' do 
@@ -17,6 +21,8 @@ class BooksController < ApplicationController
         binding.pry
         if !logged_in?
             redirect "/login"
+        else 
+            
         end 
     end
 

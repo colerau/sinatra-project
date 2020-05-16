@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     end
 
     post '/login' do 
+        binding.pry
         login(params[:email], params[:password])
     end
 
