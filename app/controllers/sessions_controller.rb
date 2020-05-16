@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     end
 
     get '/logout' do 
-        @user = User.find_by(email: session[:email], password: session[:password], id: session[:user_id])
+        @user = User.find_by(email: session[:email])
         if @user
             session.clear
             redirect "/login"

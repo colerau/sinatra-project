@@ -111,7 +111,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (= 4.2.5)
-  bcrypt (~> 3.1.7)
+  bcrypt
   capybara
   pry
   rack-test
