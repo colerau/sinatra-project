@@ -13,25 +13,4 @@ class UsersController < ApplicationController
             redirect "/login"
         end
     end
-
-    get '/users/new' do 
-        @books = Book.all
-        erb :'/users/new'
-    end
-
-    post '/users' do 
-        @user = 
-        if params[:user][:book_ids] != nil
-
-        end
-        binding.pry
-    end
-
-    get '/login' do 
-
-    end
-
-    get '/sign_up' do 
-
-    end
-end
+end 
