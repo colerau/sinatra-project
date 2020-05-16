@@ -12,4 +12,16 @@ class ApplicationController < Sinatra::Base
     get '/' do
       erb :"/application/index"
     end
+
+    helpers do 
+
+        def logged_in? 
+            # double bang gets boolean value of session[:email]
+            !!session[:email]
+        end
+
+        def current_user
+            
+        end
+    end
   end
