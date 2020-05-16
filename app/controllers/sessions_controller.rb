@@ -5,15 +5,7 @@ class SessionsController < ApplicationController
     end
 
     post '/login' do 
-        @user = User.find_by(email: params[:email], password: params[:password])
-        if @user
-            session[:user_id] = @user.id
-            session[:email] = @user.email
-            session[:password] = @user.password
-            redirect '/users'
-        else
-            redirect "/login"
-        end 
+        login(params[:email], params[:password])
     end
 
     get '/logout' do 

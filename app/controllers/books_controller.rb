@@ -4,9 +4,8 @@ class BooksController < ApplicationController
         erb :'/books/index'
     end
 
-    
     get '/books/new' do 
-        if session[:email] == nil
+        if !logged_in?
             redirect "/login"
         else 
             @books = Book.all
@@ -16,13 +15,17 @@ class BooksController < ApplicationController
     
     post '/books' do 
         binding.pry
-        if session[:email].empty? 
+        if !logged_in?
             redirect "/login"
         end 
     end
 
     get '/books/:id' do 
-        @book = Book.find_by_id(params[:id])
-        erb :'/books/show'
+        if !logged_in?
+            redirect "/login"
+        else 
+            @book = Book.find_by_id(params[:id])
+            erb :'/books/show'
+        end 
     end
 end
